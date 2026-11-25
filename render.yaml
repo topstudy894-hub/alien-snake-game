@@ -1,0 +1,16 @@
+# Render blueprint for the repo layout (server lives in web/). Use an always-on plan for a public launch.
+services:
+  - type: web
+    name: alien-snake
+    runtime: node
+    rootDir: web
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: MAX_PER_IP
+        value: "8"
+      - key: MAX_ROOMS
+        value: "300"
+      # - key: ALLOWED_ORIGINS
+      #   value: https://your-service.onrender.com
